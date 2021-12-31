@@ -1,0 +1,26 @@
+@import '../../common/color.scss';
+
+nav {
+  background-color: $secondary__color;
+  padding: 20px 0;
+  ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    li {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      a {
+        font-size: 30px;
+        color: $font__primary;
+        font-weight: 800;
+      }
+      img {
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+      }
+    }
+  }
+}
