@@ -1,15 +1,28 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import apiKey from '../../common/api/apiKey';
+import baseURL from '../../common/api/movieApi';
 
 const initialState = {
   moviesState: [],
+  seriesState: [],
+  episodeState: [],
   status: 'idle',
   error: '',
 };
 
-export const loadMovieAsync = createAsyncThunk('books/loadBookAsync', async () => {
-  const response = await axios.get(`https://www.omdbapi.com?apikey=${apiKey}&s='harry'&type=movie`);
+export const loadMovieAsync = createAsyncThunk('movies/loadMovieAsync', async () => {
+  const response = await axios.get(`${baseURL}?apikey=${apiKey}&s='black'&type=movie`);
+  return response.data;
+});
+
+export const loadSeriesAsync = createAsyncThunk('movies/loadSeriesAsync', async () => {
+  const response = await axios.get(`${baseURL}?apikey=${apiKey}&s='action'&type=series`);
+  return response.data;
+});
+
+export const loadEpisodeAsync = createAsyncThunk('movies/loadEpisodeAsync', async () => {
+  const response = await axios.get(`${baseURL}?apikey=${apiKey}&t=Game of Thrones&Season=1`);
   return response.data;
 });
 
@@ -29,20 +42,29 @@ export const moviesSlice = createSlice({
       state.status = 'Rejected';
       state.error = message;
     });
+    builder.addCase(loadSeriesAsync.pending, (state, action) => {
+      state.status = 'Pending';
+    });
+    builder.addCase(loadSeriesAsync.fulfilled, (state, { payload }) => {
+      state.seriesState = payload;
+      state.status = 'Success';
+    });
+    builder.addCase(loadSeriesAsync.rejected, (state, { error: { message } }) => {
+      state.status = 'Rejected';
+      state.error = message;
+    });
+    builder.addCase(loadEpisodeAsync.pending, (state, action) => {
+      state.status = 'Pending';
+    });
+    builder.addCase(loadEpisodeAsync.fulfilled, (state, { payload }) => {
+      state.episodeState = payload;
+      state.status = 'Success';
+    });
+    builder.addCase(loadEpisodeAsync.rejected, (state, { error: { message } }) => {
+      state.status = 'Rejected';
+      state.error = message;
+    });
   },
-  //   extraReducers:{}
 });
-
-export const { addMovies } = moviesSlice.actions;
-
-// export const loadMovies = (payload) => (dispatch) => {
-//   fetch(`https://www.omdbapi.com?apikey=${apiKey}&s='harry'&type=movie`)
-//     .then((res) => res.json())
-//     .then((data) => {
-//       console.log(data);
-//       dispatch(addMovies(data));
-//     })
-//     .catch((err) => console.log(err));
-// };
 
 export default moviesSlice.reducer;

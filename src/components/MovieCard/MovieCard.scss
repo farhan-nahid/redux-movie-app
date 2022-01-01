@@ -3,8 +3,11 @@
 .movie__card {
   background-color: $secondary__color;
   text-align: center;
+  transition: all linear 0.4s;
   &:hover {
     cursor: pointer;
+    transform: scale(1.05);
+    transition: all linear 0.4s;
   }
   img {
     width: 100%;
@@ -15,6 +18,14 @@
     font-weight: 600;
     margin: 30px 0;
     font-size: 22px;
+    padding: 0 10px;
+  }
+
+  h6 {
+    color: $font__primary;
+    font-weight: 600;
+    margin: 30px 0;
+    font-size: 18px;
     padding: 0 10px;
   }
   p {

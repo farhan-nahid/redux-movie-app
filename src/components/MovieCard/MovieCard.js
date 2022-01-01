@@ -1,12 +1,14 @@
 import React from 'react';
 import './MovieCard.scss';
 
-const MovieCard = ({ movie: { Poster, Title, Year } }) => {
+const MovieCard = ({ movie: { Poster, Title, Year, Released, imdbRating } }) => {
   return (
     <div className='movie__card'>
-      <img src={Poster} alt={Title} />
+      {Poster && <img src={Poster} alt={Title} />}
       <h3>{Title}</h3>
-      <p>Year: {Year}</p>
+      {Year && <p>Year: {Year}</p>}
+      {imdbRating && <h6>Ratting: {imdbRating}</h6>}
+      {Released && <p>Year: {Released}</p>}
     </div>
   );
 };

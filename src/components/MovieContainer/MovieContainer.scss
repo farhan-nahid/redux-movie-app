@@ -12,4 +12,21 @@
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 30px;
   }
+
+  .loading,
+  .error {
+    font-weight: 600;
+    font-size: 30px;
+    display: block;
+    text-align: center;
+    margin-top: 100px;
+  }
+
+  .loading {
+    color: $font__secondary;
+  }
+
+  .error {
+    color: red;
+  }
 }
