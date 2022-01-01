@@ -11,6 +11,11 @@
 # production
 /build
 
+# git rm src/common/api/apiKey.js --cached
+
+/src/common/api/apiKey.js
+
+
 # misc
 .DS_Store
 .env.local

@@ -1,5 +1,3 @@
-import axios from 'axios';
+const baseURL = 'https://www.omdbapi.com';
 
-export default axios.create({
-  baseURL: 'https://www.omdbapi.com',
-});
+export default baseURL;
