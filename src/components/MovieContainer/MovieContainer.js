@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Slider from 'react-slick';
+import settings from '../../common/settings';
 import { loadEpisodeAsync, loadMovieAsync, loadSeriesAsync } from '../../features/movies/moviesSlice';
 import EpisodeCard from '../EpisodeCard/EpisodeCard';
 import MovieCard from '../MovieCard/MovieCard';
@@ -8,18 +9,6 @@ import './MovieContainer.scss';
 
 const MovieContainer = () => {
   const dispatch = useDispatch();
-
-  const settings = {
-    dots: false,
-    lazyLoad: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    initialSlide: 1,
-    autoplay: true,
-    pauseOnHover: false,
-  };
 
   useEffect(() => {
     dispatch(loadMovieAsync());
