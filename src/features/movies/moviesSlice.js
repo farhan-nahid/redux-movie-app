@@ -12,8 +12,8 @@ const initialState = {
   error: '',
 };
 
-export const loadMovieAsync = createAsyncThunk('movies/loadMovieAsync', async () => {
-  const response = await axios.get(`${baseURL}?apikey=${apiKey}&s='black'&type=movie`);
+export const loadMovieAsync = createAsyncThunk('movies/loadMovieAsync', async (payload) => {
+  const response = await axios.get(`${baseURL}?apikey=${apiKey}&s=${payload}&type=movie`);
   return response.data;
 });
 

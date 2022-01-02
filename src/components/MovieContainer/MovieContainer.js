@@ -11,7 +11,7 @@ const MovieContainer = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(loadMovieAsync());
+    dispatch(loadMovieAsync('black'));
     dispatch(loadSeriesAsync());
     dispatch(loadEpisodeAsync());
   }, [dispatch]);
@@ -26,12 +26,17 @@ const MovieContainer = () => {
         <>
           {movies.error && <strong className='error'>{movies.error}</strong>}
           <h4>Movies</h4>
-          <Slider {...settings}>
-            {movies?.moviesState?.Search?.map((movie, idx) => (
-              <MovieCard key={idx} movie={movie} />
-            ))}
-          </Slider>
+          {movies.moviesState.Error ? (
+            <strong className='error'>{movies.moviesState.Error}</strong>
+          ) : (
+            <Slider {...settings}>
+              {movies?.moviesState?.Search?.map((movie, idx) => (
+                <MovieCard key={idx} movie={movie} />
+              ))}
+            </Slider>
+          )}
           <h4>Series</h4>
+
           <Slider {...settings}>
             {movies?.seriesState?.Search?.map((movie, idx) => (
               <MovieCard key={idx} movie={movie} />
