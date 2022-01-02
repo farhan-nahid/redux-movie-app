@@ -2,8 +2,10 @@
 
 footer {
   background-color: $secondary__color;
-  padding: 20px 0;
-  margin-top: 50px;
+  height: 7vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   small {
     font-size: 18px;
     font-weight: 600;

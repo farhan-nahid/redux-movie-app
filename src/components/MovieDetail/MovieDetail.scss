@@ -1,0 +1,61 @@
+@import '../../common/color.scss';
+
+#movie__details {
+  height: 83vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  h3 {
+    font-size: 35px;
+    font-weight: 600;
+    color: $font__secondary;
+  }
+
+  .details__card {
+    display: grid;
+    grid-template-columns: 1fr 250px;
+    gap: 30px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    h4 {
+      font-size: 20px;
+      color: $font__primary;
+      font-weight: 600;
+      margin-bottom: 10px;
+      strong {
+        font-size: 20px;
+        color: $font__secondary;
+        font-weight: 600;
+        margin-left: 20px;
+      }
+    }
+
+    p {
+      margin: 20px 0;
+      font-weight: 300;
+      font-size: 18px;
+      color: $font__primary;
+    }
+  }
+
+  .loading,
+  .error {
+    font-weight: 600;
+    font-size: 30px;
+    display: block;
+    text-align: center;
+    margin-top: 100px;
+  }
+
+  .loading {
+    color: $font__secondary;
+  }
+
+  .error {
+    color: red;
+  }
+}

@@ -7,6 +7,7 @@ const initialState = {
   moviesState: [],
   seriesState: [],
   episodeState: [],
+  detailsState: {},
   status: 'idle',
   error: '',
 };
@@ -26,10 +27,19 @@ export const loadEpisodeAsync = createAsyncThunk('movies/loadEpisodeAsync', asyn
   return response.data;
 });
 
+export const loadDetailsAsync = createAsyncThunk('movies/loadDetailsAsync', async (id) => {
+  const response = await axios.get(`${baseURL}?apikey=${apiKey}&i=${id}&Plot=full`);
+  return response.data;
+});
+
 export const moviesSlice = createSlice({
   name: 'movies',
   initialState,
-  reducers: {},
+  reducers: {
+    removePrevDetail: (state) => {
+      state.detailsState = {};
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(loadMovieAsync.pending, (state, action) => {
       state.status = 'Pending';
@@ -64,7 +74,20 @@ export const moviesSlice = createSlice({
       state.status = 'Rejected';
       state.error = message;
     });
+    builder.addCase(loadDetailsAsync.pending, (state, action) => {
+      state.status = 'Pending';
+    });
+    builder.addCase(loadDetailsAsync.fulfilled, (state, { payload }) => {
+      state.detailsState = payload;
+      state.status = 'Success';
+    });
+    builder.addCase(loadDetailsAsync.rejected, (state, { error: { message } }) => {
+      state.status = 'Rejected';
+      state.error = message;
+    });
   },
 });
+
+export const { removePrevDetail } = moviesSlice.actions;
 
 export default moviesSlice.reducer;

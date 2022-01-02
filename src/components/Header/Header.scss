@@ -2,7 +2,9 @@
 
 nav {
   background-color: $secondary__color;
-  padding: 20px 0;
+  height: 10vh;
+  display: flex;
+  align-items: center;
   ul {
     display: flex;
     justify-content: space-between;

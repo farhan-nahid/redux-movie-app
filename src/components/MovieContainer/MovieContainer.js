@@ -17,26 +17,31 @@ const MovieContainer = () => {
 
   return (
     <section id='movies' className='container'>
-      {movies.status === 'Pending' && <strong className='loading'>Loading...</strong>}
-      {movies.error && <strong className='error'>{movies.error}</strong>}
-      <h4>Movies</h4>
-      <div className='movies__container'>
-        {movies?.moviesState?.Search?.map((movie, idx) => (
-          <MovieCard key={idx} movie={movie} />
-        ))}
-      </div>
-      <h4>Series</h4>
-      <div className='movies__container'>
-        {movies?.seriesState?.Search?.map((movie, idx) => (
-          <MovieCard key={idx} movie={movie} />
-        ))}
-      </div>
-      <h4>Episode</h4>
-      <div className='movies__container'>
-        {movies?.episodeState?.Episodes?.map((movie) => (
-          <MovieCard key={movie.imdbID} movie={movie} />
-        ))}
-      </div>
+      {movies.status === 'Pending' ? (
+        <strong className='loading'>Loading...</strong>
+      ) : (
+        <>
+          {movies.error && <strong className='error'>{movies.error}</strong>}
+          <h4>Movies</h4>
+          <div className='movies__container'>
+            {movies?.moviesState?.Search?.map((movie, idx) => (
+              <MovieCard key={idx} movie={movie} />
+            ))}
+          </div>
+          <h4>Series</h4>
+          <div className='movies__container'>
+            {movies?.seriesState?.Search?.map((movie, idx) => (
+              <MovieCard key={idx} movie={movie} />
+            ))}
+          </div>
+          <h4>Episode</h4>
+          <div className='movies__container'>
+            {movies?.episodeState?.Episodes?.map((movie) => (
+              <MovieCard key={movie.imdbID} movie={movie} />
+            ))}
+          </div>
+        </>
+      )}
     </section>
   );
 };
