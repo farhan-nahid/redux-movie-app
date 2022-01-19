@@ -11,7 +11,7 @@ const MovieContainer = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(loadMovieAsync('black'));
+    dispatch(loadMovieAsync('spider'));
     dispatch(loadSeriesAsync());
     dispatch(loadEpisodeAsync());
   }, [dispatch]);

@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer>
       <div className='container'>
-        <small>Copyright all right reserved</small>
+        <small>Copyright &copy; {new Date().getFullYear()} all right reserved</small>
       </div>
     </footer>
   );

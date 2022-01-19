@@ -18,7 +18,7 @@ export const loadMovieAsync = createAsyncThunk('movies/loadMovieAsync', async (p
 });
 
 export const loadSeriesAsync = createAsyncThunk('movies/loadSeriesAsync', async () => {
-  const response = await axios.get(`${baseURL}?apikey=${apiKey}&s='action'&type=series`);
+  const response = await axios.get(`${baseURL}?apikey=${apiKey}&s='money'&type=series`);
   return response.data;
 });
 
